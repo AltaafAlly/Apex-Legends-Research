@@ -127,8 +127,8 @@ def save_stats_to_csv(all_stats, filename):
     print(f"Player stats saved to {filename}")
 
 # Example usage
-input_csv = 'usernames_for_PS_players.csv'  # CSV file containing the list of player usernames
-platform = 'PS4'  # Replace with the platform (PC, PS4, or X1)
-output_csv = 'Uncleaned_data_PS.csv'  # Output CSV file for storing the combined data
+input_csv = 'Data_Retrieval/CSV_files/usernames_for_Xbox_players.csv'  # CSV file containing the list of player usernames
+platform = 'X1'  # Replace with the platform (PC, PS4, or X1)
+output_csv = 'Data_Retrieval/CSV_files/Uncleaned_data_Xbox.csv'  # Output CSV file for storing the combined data
 
 process_usernames_from_csv(input_csv, platform, output_csv)
