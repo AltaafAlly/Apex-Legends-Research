@@ -28,7 +28,7 @@ def save_to_csv(usernames, filename='usernames_for_Xbox_players.csv'):
             print('username added')
 
 # Base URL for the leaderboard
-base_url = 'https://apexlegendsstatus.com/leaderboard/Global/career_kills/X1'
+base_url = 'https://apexlegendsstatus.com/leaderboard/Global/career_kills/PC'
 
 # Number of pages to scrape
 num_pages = 40  # Adjust as needed
@@ -36,4 +36,4 @@ num_pages = 40  # Adjust as needed
 usernames = scrape_usernames(base_url, num_pages)
 save_to_csv(usernames)
 
-print(f'Saved {len(usernames)} usernames to usernames.csv')
+print(f'Saved {len(usernames)} usernames to usernames_PC.csv')
