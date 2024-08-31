@@ -173,22 +173,22 @@ import csv
 import time
 
 # Function to scrape UIDs and usernames from a given URL
-def extract_uids_from_page(url):
+def extract_uids_from_page(url, platform):
     try:
         response = requests.get(url)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Find all <a> tags with href containing '/profile/uid/PC/'
+            # Find all <a> tags with href containing '/profile/uid/'
             uid_links = soup.find_all('a', href=True)
             
             uids = []
             for link in uid_links:
                 href = link['href']
-                # Check if the href attribute contains '/profile/uid/PC/'
-                if '/profile/uid/PC/' in href:
+                # Check if the href attribute contains the platform-specific path
+                if f'/profile/uid/{platform}/' in href:
                     # Extract the UID part from the href
-                    uid = href.split('/profile/uid/PC/')[1]  # Get the part after '/profile/uid/PC/'
+                    uid = href.split(f'/profile/uid/{platform}/')[1]  # Extract the part after the platform path
                     username = link.get_text().strip()  # Get the player's name
                     uids.append((username, uid))
                     print(f"Extracted UID: {uid}, Username: {username}")
@@ -201,7 +201,7 @@ def extract_uids_from_page(url):
         return None
 
 # Function to scrape UIDs from multiple pages and save to a CSV file
-def scrape_uids_to_csv(base_url, pages, output_file):
+def scrape_uids_to_csv(base_url, platform, pages, output_file):
     unique_uids = set()  # Use a set to avoid duplicates
 
     # Open the CSV file to write
@@ -212,7 +212,7 @@ def scrape_uids_to_csv(base_url, pages, output_file):
         for page in range(1, pages + 1):
             page_url = f"{base_url}/{page}"
             print(f"Scraping page: {page_url}")
-            uids = extract_uids_from_page(page_url)
+            uids = extract_uids_from_page(page_url, platform)
             if uids:
                 for username, uid in uids:
                     if uid not in unique_uids:  # Check if UID is already added
@@ -226,15 +226,15 @@ def scrape_uids_to_csv(base_url, pages, output_file):
     print(f"Scraping completed. UIDs saved to {output_file}")
 
 # Base URL for leaderboard pages
-base_leaderboard_url = 'https://apexlegendsstatus.com/leaderboard/Global/career_kills/PC'
+base_leaderboard_url = 'https://apexlegendsstatus.com/leaderboard/Global/career_kills/X1'  # URL for Xbox One leaderboard
 total_pages = 40  # Number of pages to scrape
+platform = 'X1'  # Set the platform for scraping
 
 # Output CSV file path
-output_csv_file = "Data_Retrieval/CSV_files/Usernames/usernames_with_uids_for_PC.csv"
+output_csv_file = "Data_Retrieval/CSV_files/Usernames/usernames_with_uids_for_Xbox.csv"
 
 # Scrape the UIDs and save them to the CSV file
-scrape_uids_to_csv(base_leaderboard_url, total_pages, output_csv_file)
-
+scrape_uids_to_csv(base_leaderboard_url, platform, total_pages, output_csv_file)
 
 
 
