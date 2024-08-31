@@ -1,0 +1,3 @@
+For console data set, the random forest imputation worked the best since we observed a higher correlation between the features. 
+
+On the other hand, for the PC data set, the mice imputation worked the best.
