@@ -245,9 +245,9 @@ def write_stats_to_csv(stats, writer):
     print(f"Player stats for {player_name} written to CSV.")
 
 # Example usage
-input_csv = 'Data_Retrieval/CSV_files/Usernames/usernames_with_uids_for_PS4.csv'  # CSV file containing the list of player usernames and UIDs
-platform = 'PS4'  # Platform for which data is being fetched
-output_csv = 'Data_Retrieval/CSV_files/Uncleaned_data_PS4_updated.csv'  # Output CSV file for storing the combined data
+input_csv = 'Data_Retrieval/CSV_files/Usernames/shortened_version_Xbox.csv'  # CSV file containing the list of player usernames and UIDs
+platform = 'X1'  # Platform for which data is being fetched
+output_csv = 'Data_Retrieval/CSV_files/Uncleaned_shortened_version_Xbox.csv'  # Output CSV file for storing the combined data
 
 process_uids_from_csv(input_csv, platform, output_csv)
 

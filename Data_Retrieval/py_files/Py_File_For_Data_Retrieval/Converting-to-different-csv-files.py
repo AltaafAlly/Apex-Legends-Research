@@ -47,9 +47,9 @@ def separate_csv_files(input_file, output_file1, output_file2):
     print(f"Data separated successfully into {output_file1} and {output_file2}")
 
 # Replace 'input.csv', 'output1.csv', and 'output2.csv' with the paths to your CSV files
-separate_csv_files('Data_Retrieval/CSV_files/Uncleaned_data_PC.csv', 
-                   'Data_Retrieval/CSV_files/Career_Stats_PC.csv', 
-                   'Data_Retrieval/CSV_files/Legend_Stats_PC.csv')
+separate_csv_files('Data_Retrieval/CSV_files/Player Stats/Uncleaned Player Stats/PC/Uncleaned_data_PC.csv', 
+                   'Data_Retrieval/Career_Stats_PC.csv', 
+                   'Data_Retrieval/Legend_Stats_PC.csv')
 
 
 # import pandas as pd
