@@ -1,4 +1,4 @@
-
+<!-- 
 ### **Current Progress**
 
 1. **Data Collection:**
@@ -41,6 +41,9 @@
    - **Reasoning:**
      - Zero values in Legend stats represent Legends not used by players.
      - Treating zeros as missing values maintains the integrity of the data, avoiding false representation of player activity.
+     - Visualized Legend stats now need to interpret them.
+     - Explain each legend abilities.
+     - Explain why these legends are the most picked with repect to their abilities.
 
 ---
 
@@ -89,4 +92,49 @@
    - **Representation and Generalizability:**
      - Address how focusing on top players may affect the applicability of your conclusions to the broader player population.
 
+--- -->
+
+# Apex Legends Data Analysis Checklist
+
+## 1. **Data Collection**
+
+### 1.1 **Player Statistics**
+- [x] Gathered data for **900 top players** from each platform (PC, PlayStation, and Xbox), totaling **2,700 players**.
+- [x] Collected overall **career stats**: kills, revives, and wins.
+
+### 1.2 **Legend Statistics**
+- [x] Acquired stats for the different Legends used by each player.
+- [x] Categorized Legends into five classes:
+  - **Assault**: Bangalore, Fuse, Ash, Mad Maggie, Ballistic
+  - **Skirmisher**: Pathfinder, Wraith, Octane, Revenant, Horizon, Valkyrie, Alter
+  - **Recon**: Bloodhound, Crypto, Seer, Vantage
+  - **Support**: Gibraltar, Lifeline, Mirage, Loba, Newcastle, Conduit
+  - **Controller**: Caustic, Wattson, Rampart, Catalyst
+
+### 1.3 **Data Sources**
+- [x] Used public leaderboards for accessible usernames.
+- [x] Employed a third-party API to obtain player stats.
+- [x] Scraped UIDs to retrieve stats via the API.
+
 ---
+
+## 2. **Data Visualization**
+- [x] Created bar graphs to visualize trends.
+- [ ] Interpret the data from the bar graphs for both career stats and legend stats.
+- [ ] Conduct further data analysis to support or refute the hypothesis.
+
+---
+# ANALYSIS ANALYSIS ANALYSIS WE NEED TO DO ANALYSIS
+
+## 3. **Additional Data Needed**
+- [ ] Gather data on weapons to analyze which weapons players use most frequently.
+- [ ] Analyze different maps to determine popular drop locations.
+- [ ] Check survival rates in high-population areas to see if they impact player success.
+- [ ] Investigate aggressive player tendencies related to landing in populated areas for more kills.
+- [ ] PLEASE ADDRESS LIMITATIONS WHETHER IT BE WITH THE DATA OR WHATEVER ADDRESS IT they include:
+  - [ ] Data Limitations:
+  - No Games Played Data: Without total games played, win rates are estimations.
+  - Sample Bias: Data from top players may not reflect the general player base.
+  - [ ] External Factors:
+  - Meta Changes: Game updates can affect Legend effectiveness.
+  - Team Dynamics: Performance may depend on team composition and coordination
