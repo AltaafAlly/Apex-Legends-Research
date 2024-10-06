@@ -138,3 +138,105 @@
   - [ ] External Factors:
   - Meta Changes: Game updates can affect Legend effectiveness.
   - Team Dynamics: Performance may depend on team composition and coordination
+
+
+Since the *time alive* data is unavailable, we can adjust our approach to measuring aggressiveness. Instead, we will focus on the data we do have—*kills*, *damage dealt*, and *wins*—and create a revised formula to capture the essence of aggressiveness based on combat performance alone. Here's a possible approach:
+
+### Revised Playstyle Aggressiveness Score (PAS)
+We can define aggressiveness based on two key combat indicators:
+1. **BR Kills**: Players with more kills are likely to engage in combat more frequently.
+2. **BR Damage**: Higher damage numbers suggest more active combat participation, regardless of the kills secured.
+
+To capture both aspects, we can use a weighted formula like this:
+
+\[
+\text{PAS} = \alpha \times \left( \frac{\text{BR Kills}}{\text{BR Wins} + 1} \right) + \beta \times \left( \frac{\text{BR Damage}}{\text{BR Wins} + 1} \right)
+\]
+
+- **BR Kills** / **BR Wins** ratio: This shows how aggressive a player is relative to their wins, where a high number of kills per win is a marker of an aggressive playstyle.
+- **BR Damage** / **BR Wins** ratio: This indicates how much damage a player is dealing relative to their wins, again emphasizing active combat engagement.
+- The weights \( \alpha \) and \( \beta \) can be tuned depending on whether you want kills or damage to have a stronger influence on the score (you can set these both to 1 for simplicity).
+
+Would you like to calculate this **Playstyle Aggressiveness Score (PAS)** using this formula for your data? If so, I can apply this across all the Legends and players in your datasets to see how different players and Legends rank in terms of aggressiveness.
+
+To justify the components of the **Playstyle Aggressiveness Score (PAS)** and its relevance to measuring aggressiveness, I drew from several principles used in player performance evaluation, as seen in research on multiplayer games and battle royales. Here’s how each part of the formula connects to established literature:
+
+### 1. **Kills as an Indicator of Aggression**
+   - **Justification**: High kills are often associated with aggressive playstyles. Players who actively seek out and eliminate opponents are considered to be more aggressive than those who avoid combat.
+   - **Supporting Literature**: Shim et al. (2011) link high kill rates to aggressive playstyles in multiplayer shooters【15†source】. Dehpanah et al. (2022) also emphasize kills as a key metric in competitive shooter games【15†source】.
+
+### 2. **Damage as an Indicator of Combat Engagement**
+   - **Justification**: Even if a player doesn’t always secure kills, dealing a high amount of damage shows frequent engagement in combat. High damage output suggests a player is actively contributing to fights, which is another mark of aggressive play.
+   - **Supporting Literature**: Dehpanah et al. (2022) include damage dealt as a primary factor in assessing player aggression and engagement in battle royale games【15†source】. This metric is particularly emphasized in battle royales, where strategic play and engagement matter as much as outright kills.
+
+### 3. **Adjusting for Wins**
+   - **Justification**: Including wins in the denominator helps balance the formula, preventing players with a high number of kills or damage from being overly favored if they don’t win frequently. It’s a way to ensure that combat effectiveness (in the form of wins) is taken into account while still highlighting aggressiveness.
+   - **Supporting Literature**: The ratio of kills or damage to wins has been used in previous research as a way to normalize aggressiveness relative to success, particularly in team-based games where pure combat metrics can sometimes overshadow strategic play【15†source】【15†source】.
+
+### 4. **Combining Kills and Damage**
+   - **Justification**: The combination of both kills and damage ensures that we account for the full spectrum of aggressive playstyles. Some players might consistently deal damage without always securing kills, while others might have lower damage but more kill efficiency. By combining both, we capture a broader view of aggression.
+   - **Supporting Literature**: Visti et al. (2017) argue for using multiple metrics (such as kills and damage) to evaluate player performance comprehensively, noting that any single metric may overlook important aspects of a player’s style【15†source】.
+
+This formula is an extension of these ideas, applying them specifically to the available stats in *Apex Legends*. If you'd like, I can proceed to implement this for your data and help identify which Legends and players are classified as more aggressive based on this model.
+
+Here’s a **README format** for the **Playstyle Aggressiveness Score (PAS)** formula, which you can use in your research:
+
+---
+
+# Playstyle Aggressiveness Score (PAS)
+
+## Overview
+
+The **Playstyle Aggressiveness Score (PAS)** is a custom metric designed to measure the aggressiveness of players in *Apex Legends*, based on their in-game performance statistics. The PAS score evaluates how frequently a player engages in combat and deals damage relative to their success in winning matches. It accounts for both the number of kills and the total damage dealt by the player, adjusted by their win count to prevent skewing the score towards players who only focus on combat without translating it into victories.
+
+## Formula
+
+The **Playstyle Aggressiveness Score (PAS)** is calculated as follows:
+
+\[
+  \text{PAS} = \alpha \times \left( \frac{\text{BR Kills}}{\text{BR Wins} + 1} \right) + \beta \times \left( \frac{\text{BR Damage}}{\text{BR Wins} + 1} \right)
+\]
+
+### Variables:
+- **BR Kills**: The number of kills a player has secured in *Battle Royale* mode.
+- **BR Wins**: The number of wins a player has in *Battle Royale* mode.
+- **BR Damage**: The total damage a player has dealt in *Battle Royale* mode.
+
+### Weights:
+- **\(\alpha\)**: Weight assigned to the kills per win ratio (default value = 1).
+- **\(\beta\)**: Weight assigned to the damage per win ratio (default value = 1).
+
+### Purpose of Weights:
+- **\(\alpha\)** and **\(\beta\)** can be adjusted based on the specific research focus. If you want to emphasize the importance of kills over damage, increase \(\alpha\). If damage dealt is considered more reflective of aggressiveness, increase \(\beta\). For most balanced cases, both weights can be set to 1.
+
+## Explanation
+
+- **Kills per Win**: This term reflects how often a player is securing kills relative to the number of games won. A higher ratio indicates that the player tends to be aggressive and successful in combat even if they do not win every match.
+- **Damage per Win**: This term reflects how much damage a player deals relative to their win count, capturing their active participation in fights, regardless of securing kills. High damage suggests that the player engages more frequently in combat.
+- **+1 in the denominator**: This is used to avoid division by zero in cases where players have no wins, ensuring that all players receive a valid score.
+
+## Application
+
+The **PAS** score helps in:
+1. **Identifying Aggressive Players**: Players with high scores are those who frequently engage in combat, either by securing kills or dealing significant damage, even if they don’t always secure wins.
+2. **Comparing Legends**: This score can be applied across different Legends to evaluate how each Legend facilitates aggressive playstyles based on player performance.
+3. **Tracking Playstyle Trends**: It enables researchers to analyze and categorize players based on their in-game behavior, distinguishing between aggressive and passive strategies.
+
+## Example
+
+For a player with the following stats:
+- **BR Kills**: 1000
+- **BR Wins**: 50
+- **BR Damage**: 500,000
+
+With \(\alpha = 1\) and \(\beta = 1\), the PAS score would be:
+
+\[
+\text{PAS} = 1 \times \left( \frac{1000}{50 + 1} \right) + 1 \times \left( \frac{500000}{50 + 1} \right) = 19.61 + 9803.92 = 9823.53
+\]
+
+This indicates that the player is quite aggressive in combat, frequently dealing significant damage and securing kills relative to their wins.
+
+---
+
+This **README** provides a clear explanation of the formula and its application. You can adjust it as needed for your specific project or research paper.
