@@ -84,7 +84,7 @@ This formulation ensures that kills and damage are contextualized against the pl
 
 To address this, we introduced a modified version of the score, **PAS_Modified**:
 
-PAS = (BR Kills / (BR Wins + 1)) * 0.5 +  (BR Damage / (BR Wins + 1)) * 0.5
+PAS = (BR Kills / (BR Wins + 1)* 0.5)  +  (BR Damage / (BR Wins + 1)* 0.5) 
 
 The square root adjustment reduces the impact of **BR Wins**, allowing **BR Kills** and **BR Damage** to play a more significant role in determining PAS. This adjustment provided a more balanced measure of playstyle aggressiveness, particularly for players with high win counts who also exhibit high combat engagement.
 
