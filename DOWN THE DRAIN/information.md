@@ -179,7 +179,6 @@ To justify the components of the **Playstyle Aggressiveness Score (PAS)** and it
 
 This formula is an extension of these ideas, applying them specifically to the available stats in *Apex Legends*. If you'd like, I can proceed to implement this for your data and help identify which Legends and players are classified as more aggressive based on this model.
 
-Here’s a **README format** for the **Playstyle Aggressiveness Score (PAS)** formula, which you can use in your research:
 
 ---
 
@@ -238,5 +237,3 @@ With \(\alpha = 1\) and \(\beta = 1\), the PAS score would be:
 This indicates that the player is quite aggressive in combat, frequently dealing significant damage and securing kills relative to their wins.
 
 ---
-
-This **README** provides a clear explanation of the formula and its application. You can adjust it as needed for your specific project or research paper.
