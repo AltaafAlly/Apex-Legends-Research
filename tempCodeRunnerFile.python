@@ -1,0 +1,117 @@
+# %%
+import pandas as pd
+import numpy as np
+from scipy.stats import pearsonr
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+
+# %% [markdown]
+# # 2. Load and Inspect the Dataset
+
+# %%
+# Load the dataset
+data = pd.read_csv(r'C:\Users\altaa\Documents\GitHub\Apex-Legends-Research\Career Stats Analysis\Total_Career_Stats.csv')  # Replace with your actual file path
+
+# Display the first few rows
+print(data.head())
+
+# Display summary statistics
+print(data.describe())
+
+
+# %% [markdown]
+# # 3. Data Cleaning and Preparation
+
+# %%
+# Check for missing values
+print(data.isnull().sum())
+
+# Check data types
+print(data.dtypes)
+
+
+# %% [markdown]
+# # 4. Exploratory Data Analysis (EDA)
+
+# %% [markdown]
+# ## 4.1. Descriptive Statistics
+
+# %%
+# Calculate descriptive statistics
+desc_stats = data[['career_kills', 'career_wins', 'career_revives']].describe()
+print(desc_stats)
+
+
+# %% [markdown]
+# ## 4.2. Correlation Analysis
+
+# %%
+# Pearson Correlation between Career Kills and Career Wins
+corr_kills_wins, p_value_kills_wins = pearsonr(data['career_kills'], data['career_wins'])
+print(f"Pearson Correlation between Career Kills and Career Wins: {corr_kills_wins:.4f} (p-value: {p_value_kills_wins:.4f})")
+
+# Pearson Correlation between Career Kills and Career Revives
+corr_kills_revives, p_value_kills_revives = pearsonr(data['career_kills'], data['career_revives'])
+print(f"Pearson Correlation between Career Kills and Career Revives: {corr_kills_revives:.4f} (p-value: {p_value_kills_revives:.4f})")
+
+# Pearson Correlation between Career Wins and Career Revives
+corr_wins_revives, p_value_wins_revives = pearsonr(data['career_wins'], data['career_revives'])
+print(f"Pearson Correlation between Career Wins and Career Revives: {corr_wins_revives:.4f} (p-value: {p_value_wins_revives:.4f})")
+
+
+# %% [markdown]
+# # 5. Regression Analysis
+
+# %% [markdown]
+# ## 5.1. Simple Linear Regression
+
+# %%
+# Define independent and dependent variables
+X = data['career_kills']
+y = data['career_wins']
+
+# Add a constant to the model (intercept)
+X_with_const = sm.add_constant(X)
+
+# Fit the regression model
+model = sm.OLS(y, X_with_const).fit()
+
+# Print the regression results
+print(model.summary())
+
+
+# %% [markdown]
+# # 6. Assumption Verification
+
+# %% [markdown]
+# ## 6.2. Normality of Residuals
+
+# %%
+# Obtain residuals
+residuals = model.resid
+
+# Calculate Shapiro-Wilk test for normality
+from scipy.stats import shapiro
+shapiro_stat, shapiro_p = shapiro(residuals)
+print(f"Shapiro-Wilk Test: Statistic={shapiro_stat:.4f}, p-value={shapiro_p:.4f}")
+
+
+# %% [markdown]
+# ## 6.3. Homoscedasticity
+
+# %%
+from statsmodels.stats.diagnostic import het_breuschpagan
+
+# Perform Breusch-Pagan test
+bp_test = het_breuschpagan(residuals, X_with_const)
+labels = ['LM Statistic', 'LM Test p-value', 'F-Statistic', 'F-Test p-value']
+bp_results = dict(zip(labels, bp_test))
+print("Breusch-Pagan Test Results:")
+for key in labels:
+    print(f"{key}: {bp_results[key]:.4f}")
+
+
+
