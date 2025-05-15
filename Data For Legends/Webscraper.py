@@ -16,8 +16,9 @@ legends = [
 # Base URL for damage leaderboard
 base_url = 'https://apexlegendsstatus.com/leaderboard/{}/damage/ANY/{}'
 
-# Output directory for saving damage data
-output_directory = r'C:\Users\altaa\Documents\GitHub\Apex-Legends-Research\New Data For Legends\Legend Damage'
+# Add a directory to save the CSV files
+output_directory = 'damage_data'
+
 
 # Create the directory if it doesn't exist
 os.makedirs(output_directory, exist_ok=True)

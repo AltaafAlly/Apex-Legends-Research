@@ -13,7 +13,6 @@ from sklearn.metrics import r2_score
 
 # %%
 # Load the dataset
-data = pd.read_csv(r'C:\Users\altaa\Documents\GitHub\Apex-Legends-Research\Career Stats Analysis\Total_Career_Stats.csv')  # Replace with your actual file path
 
 # Display the first few rows
 print(data.head())
